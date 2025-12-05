@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Brew House Korea | Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/coldbrew.webp">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-icon">☕</div>
+        <span>Brew House Korea</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="menu.html">Menu</a></li>
+          <li><a href="order.html">Order</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+   <section class="container menu-page-layout"> 
+      <div>
+        <h2 class="section-title">Signature Menu</h2>
+        <p class="section-subtitle">
+          These are our special drinks brewed with lots of passion. 
+         <br><br>
+         <a href="order.html"><button class="btn-primary">Order Now</button></a>
+        </p>
+         
+
+        <div class="grid-3">
+          <article class="card menu-card" data-id="signatureLatte" data-name="Brew House Signature Latte" data-price="4800">
+            <div class="menu-item-image">
+              <img src="images/latte.jpg" alt="Brew House Signature Latte" />
+            </div>
+            <div class="menu-item-header">
+              <span class="menu-item-title">Brew House Signature Latte</span>
+              <span class="menu-item-price">₩4,800</span>
+            </div>
+            <p style="color:var(--muted); font-size:0.88rem;">
+              Smooth double shot espresso with silky milk and a hint of natural sweetness.
+            </p>
+          </article>
+
+          <article class="card menu-card" data-id="coldBrew" data-name="Busan Harbor Cold Brew" data-price="5200">
+            <div class="menu-item-image">
+              <img src="images/coldbrew.webp" alt="Busan Harbor Cold Brew" />
+            </div>
+            <div class="menu-item-header">
+              <span class="menu-item-title">Busan Harbor Cold Brew</span>
+              <span class="menu-item-price">₩5,200</span>
+            </div>
+            <p style="color:var(--muted); font-size:0.88rem;">
+              18-hour cold brew with a touch of brown sugar syrup — smooth and refreshing.
+            </p>
+          </article>
+
+          <article class="card menu-card" data-id="injeolmi" data-name="Honey Injeolmi Latte" data-price="5500">
+            <div class="menu-item-image">
+              <img src="images/honeylatte.webp" alt="Honey Injeolmi Latte" />
+            </div>
+            <div class="menu-item-header">
+              <span class="menu-item-title">Honey Injeolmi Latte</span>
+              <span class="menu-item-price">₩5,500</span>
+            </div>
+            <p style="color:var(--muted); font-size:0.88rem;">
+              Espresso with steamed milk, roasted soybean powder and a drizzle of honey.
+            </p>
+          </article>
+
+          <article class="card menu-card" data-id="mocha" data-name="Seoul Night Mocha" data-price="5000">
+            <div class="menu-item-image">
+              <img src="images/mocha.webp" alt="Seoul Night Mocha" />
+            </div>
+            <div class="menu-item-header">
+              <span class="menu-item-title">Seoul Night Mocha</span>
+              <span class="menu-item-price">₩5,000</span>
+            </div>
+            <p style="color:var(--muted); font-size:0.88rem;">
+              Dark chocolate, double espresso and milk foam with light cocoa dusting.
+            </p>
+          </article>
+
+          <article class="card menu-card" data-id="citrus" data-name="Jeju Citrus Americano" data-price="4300">
+            <div class="menu-item-image">
+              <img src="images/lemon.webp" alt="Jeju Citrus Americano" />
+            </div>
+            <div class="menu-item-header">
+              <span class="menu-item-title">Jeju Citrus Americano</span>
+              <span class="menu-item-price">₩4,300</span>
+            </div>
+            <p style="color:var(--muted); font-size:0.88rem;">
+              Espresso with a slice of citrus and a bit of sparkling water for a clean finish.
+            </p>
+          </article>
+
+          <article class="card menu-card" data-id="dalgona" data-name="Brown Sugar Dalgona Latte" data-price="5600">
+            <div class="menu-item-image">
+              <img src="images/dalgona.webp" alt="Brown Sugar Dalgona Latte" />
+            </div>
+            <div class="menu-item-header">
+              <span class="menu-item-title">Brown Sugar Dalgona Latte</span>
+              <span class="menu-item-price">₩5,600</span>
+            </div>
+            <p style="color:var(--muted); font-size:0.88rem;">
+              Creamy latte with slow-melt brown sugar and crunchy 달고나 topping.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> Brew House Korea. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

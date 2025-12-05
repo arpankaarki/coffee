@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Brew House Korea | Order Coffee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <link rel="icon" href="images/coldbrew.webp" />
+  <style>
+/* PRINT ONLY THE ORDER SUMMARY */
+@media print {
+
+  /* Hide everything except bill */
+  body * {
+    visibility: hidden !important;
+  }
+
+  #printable, #printable * {
+    visibility: visible !important;
+  }
+
+  /* Bill container */
+  #printable {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px;                /* Narrow like receipt */
+    margin: 0 auto;
+    padding: 20px;
+    font-family: "Courier New", monospace;
+    border: 1px dashed #000;     /* Receipt border */
+  }
+
+  /* Remove backgrounds, shadows, colors */
+  * {
+    background: none !important;
+    box-shadow: none !important;
+    color: #000 !important;
+  }
+
+  /* Center heading like real receipt */
+  #printable h3 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  /* Customer info */
+  #printable p {
+    margin: 3px 0;
+    font-size: 14px;
+  }
+
+  /* Add dotted separators */
+  #printable::before,
+  #printable::after {
+    content: "------------------------------";
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    font-size: 12px;
+  }
+
+  /* Totals formatting */
+  #itemsTotal, #priceTotal {
+    float: right;
+  }
+
+  /* Disable page breaks inside */
+  #printable {
+    page-break-inside: avoid;
+  }
+
+  @page {
+    margin: 10mm;
+  }
+}
+
+</style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-icon">☕</div>
+        <span>Brew House Korea</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a class="active" href="order.html">Order</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <h2 class="section-title">Order Coffee</h2>
+      <p class="section-subtitle">
+        Fill in your details and choose your drinks. This is a demo page – connect it to a real backend for actual orders.
+      </p>
+
+      <div class="order-layout">
+        <!-- Order form -->
+        <div>
+          <form id="orderForm">
+            <div class="form-row">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="010-0000-0000" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div>
+                <label for="pickupTime">Pickup time</label>
+                <input type="time" id="timeInput" />
+              </div>
+              <div>
+                <label for="type">Order type</label>
+                <select id="type" name="type">
+                  <option value="pickup">Pickup in store</option>
+                  <option value="takeout">Takeout</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label>Choose your drinks</label>
+              <table class="order-table">
+                <thead>
+                  <tr>
+                    <th>Drink</th>
+                    <th>Price</th>
+                    <th style="width:90px;">Qty</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Brew House Signature Latte</td>
+                    <td>₩4,800</td>
+                    <td><input type="number" min="0" value="0" data-item="signatureLatte" /></td>
+                  </tr>
+                  <tr>
+                    <td>Busan Harbor Cold Brew</td>
+                    <td>₩5,200</td>
+                    <td><input type="number" min="0" value="0" data-item="coldBrew" /></td>
+                  </tr>
+                  <tr>
+                    <td>Honey Injeolmi Latte</td>
+                    <td>₩5,500</td>
+                    <td><input type="number" min="0" value="0" data-item="injeolmi" /></td>
+                  </tr>
+                  <tr>
+                    <td>Seoul Night Mocha</td>
+                    <td>₩5,000</td>
+                    <td><input type="number" min="0" value="0" data-item="mocha" /></td>
+                  </tr>
+                  <tr>
+                    <td>Jeju Citrus Americano</td>
+                    <td>₩4,300</td>
+                    <td><input type="number" min="0" value="0" data-item="citrus" /></td>
+                  </tr>
+                  <tr>
+                    <td>Brown Sugar Dalgona Latte</td>
+                    <td>₩5,600</td>
+                    <td><input type="number" min="0" value="0" data-item="dalgona" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div>
+              <label for="notes">Notes (e.g. less ice, extra shot)</label>
+              <textarea id="notes" name="notes" placeholder="Optional"></textarea>
+            </div>
+            <button type="button" class="btn-primary" onclick="window.print()">Print Bill</button>
+          </form>
+        </div>
+
+        <!-- Summary -->
+        <aside class="order-summary" id="printable">
+          <h3 style="margin-bottom:0.5rem;">Order summary</h3>
+
+          <!-- CUSTOMER INFO -->
+          <div id="customerInfo" style="margin-bottom:1rem;">
+            <p><strong>Name:</strong> <span id="summaryName">-</span></p>
+            <p><strong>Phone:</strong> <span id="summaryPhone">-</span></p>
+            <p><strong>Pickup Time:</strong> <span id="summaryTime">-</span></p>
+            <p><strong>Order Type:</strong> <span id="summaryType">-</span></p>
+            <p><strong>Notes:</strong> <span id="summaryNotes">-</span></p>
+          </div>
+
+          <p style="margin-bottom:0.3rem;">Items total: <strong id="itemsTotal">0</strong></p>
+          <p style="margin-bottom:0.7rem;">Estimated price: <strong id="priceTotal">₩0</strong></p>
+
+          * Payment is made at the counter in the café.<br />
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> Brew House Korea. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const timeInput = document.getElementById("timeInput");
+
+    // Set default time to current time
+    function setCurrentTime() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      timeInput.value = `${hours}:${minutes}`;
+    }
+
+    setCurrentTime();
+
+    // Log time when changed
+    timeInput.addEventListener("change", () => {
+      console.log("Selected Time:", timeInput.value);
+    });
+
+    const prices = {
+      signatureLatte: 4800,
+      coldBrew: 5200,
+      injeolmi: 5500,
+      mocha: 5000,
+      citrus: 4300,
+      dalgona: 5600
+    };
+
+    const qtyInputs = document.querySelectorAll('.order-table input[type="number"]');
+    const itemsTotalEl = document.getElementById("itemsTotal");
+    const priceTotalEl = document.getElementById("priceTotal");
+
+    function updateTotals() {
+      let items = 0;
+      let total = 0;
+
+      qtyInputs.forEach((input) => {
+        const count = parseInt(input.value || "0", 10);
+        const key = input.dataset.item;
+        if (!key) return;
+        items += count;
+        total += count * (prices[key] || 0);
+      });
+
+      itemsTotalEl.textContent = items;
+      priceTotalEl.textContent = "₩" + total.toLocaleString();
+    }
+
+    qtyInputs.forEach((input) => {
+      input.addEventListener("input", updateTotals);
+    });
+
+    updateTotals();
+
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (parseInt(itemsTotalEl.textContent, 10) === 0) {
+        alert("Please choose at least one drink.");
+        return;
+      }
+      alert("Thank you for ordering!");
+      this.reset();
+      updateTotals();
+    });
+
+    // Initialize flatpickr
+    flatpickr('#timeInput', {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+      time_24hr: true,
+    });
+
+    // Function to update customer info on summary
+    function updateCustomerInfo() {
+      document.getElementById("summaryName").textContent =
+        document.getElementById("name").value || "-";
+
+      document.getElementById("summaryPhone").textContent =
+        document.getElementById("phone").value || "-";
+
+      document.getElementById("summaryTime").textContent =
+        document.getElementById("timeInput").value || "-";
+
+      document.getElementById("summaryType").textContent =
+        document.getElementById("type").value || "-";
+
+      document.getElementById("summaryNotes").textContent =
+        document.getElementById("notes").value || "-";
+    }
+
+    // Set event listeners to update info dynamically
+    document.getElementById("name").addEventListener("input", updateCustomerInfo);
+    document.getElementById("phone").addEventListener("input", updateCustomerInfo);
+    document.getElementById("timeInput").addEventListener("input", updateCustomerInfo);
+    document.getElementById("type").addEventListener("change", updateCustomerInfo);
+    document.getElementById("notes").addEventListener("input", updateCustomerInfo);
+
+    // Initial call to populate the summary
+    updateCustomerInfo();
+  </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Brew House Korea | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/coldbrew.webp">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-icon">☕</div>
+        <span>Brew House Korea</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="order.html">Order</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero-grid">
+      <div>
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Freshly brewed in Busan
+        </div>
+        <h1 class="hero-title">
+          Coffee that feels like<br />
+          <span>Busan in a cup.</span>
+        </h1>
+        <p class="hero-text">
+          Brew House Korea is a cozy café in 사상구, 부산 — serving specialty coffee and
+          Korean-inspired drinks. Order ahead and pick up your drink when you arrive.
+        </p>
+        <div class="hero-cta">
+          <a href="order.html" class="btn-primary">
+            Order coffee now →
+          </a>
+          <a href="menu.html" class="btn-ghost">
+            View full menu
+          </a>
+        </div>
+        <p style="font-size:0.85rem; color:var(--muted);">
+          Open daily <strong>8:00 AM – 10:00 PM</strong><br />
+          부산 사상구 사상로163번길 16 · Phone: 010-9513-8057
+        </p>
+      </div>
+
+      <div class="hero-box">
+        <div style="text-align:center;">
+          <h2 style="font-size:1.2rem; margin-bottom:0.3rem;">Today’s Featured</h2>
+          <p style="margin-bottom:0.4rem;">Seoul Night Mocha</p>
+          <p style="font-size:0.9rem; color:var(--muted);">
+            Dark chocolate, double espresso and soft milk foam.
+          </p>
+          <p style="margin-top:0.6rem; font-weight:600; color:var(--accent);">₩5,000</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" style="margin-top:3rem;">
+      <h2 class="section-title">How ordering works</h2>
+      <p class="section-subtitle">
+        Simple ordering in three steps.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="margin-bottom:0.4rem;">1. Choose your drinks</h3>
+          <p>Check our <strong>Menu</strong> page and decide what you want.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:0.4rem;">2. Fill the order form</h3>
+          <p>Go to the <strong>Order</strong> page, select quantities and add your name/phone.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:0.4rem;">3. Pick up and enjoy</h3>
+          <p>Come to Brew House Korea, pay at the counter and enjoy your coffee.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> Brew House Korea. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
